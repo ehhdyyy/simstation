@@ -1,0 +1,62 @@
+package src.simstation;
+
+import src.mvc.*;
+import src.simstation.Commands.*;
+
+public class WorldFactory implements AppFactory {
+
+    @Override
+    public String getTitle() {
+        return "SimStation";
+    }
+
+    @Override
+    public String[] getHelp() {
+        return new String[] {
+                "" // finish this
+        };
+    }
+
+    @Override
+    public String about() {
+        return "Simstation Group 1";
+    }
+
+    @Override
+    public Model makeModel() {
+        return new World(); // WILL NOT WORK SINCE WORLD IS ABSTRACT
+    }
+
+    @Override
+    public View makeView(Model m) {
+        return new WorldView(m);
+    }
+
+    @Override
+    public String[] getEditCommands() {
+        return new String[] {
+                "Start",
+                "Pause",
+                "Resume",
+                "Stop",
+                "Stats",
+        };
+    }
+
+    @Override
+    public Command makeEditCommand(Model model, String type, Object source) {
+        if (type.equalsIgnoreCase("Start")) {
+            return new StartCommand(model);
+        } else if (type.equalsIgnoreCase("Pause")) {
+            return new PauseCommand(model);
+        } else if (type.equalsIgnoreCase("Resume")) {
+            return new ResumeCommand(model);
+        } else if (type.equalsIgnoreCase("Stop")) {
+            return new StopCommand(model);
+        } else if (type.equalsIgnoreCase("Stats")) {
+            return new StatsCommand(model);
+        }
+        return null;
+    }
+
+}
