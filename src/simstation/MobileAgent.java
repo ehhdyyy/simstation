@@ -1,7 +1,13 @@
 package src.simstation;
 
 public abstract class MobileAgent extends Agent {
-    private Heading heading;
+
+    protected Heading heading;
+
+    public MobileAgent(String agentName, World world) {
+        super(agentName, world);
+        heading = Heading.random();
+    }
 
     public void move(int steps) {
 
@@ -10,4 +16,5 @@ public abstract class MobileAgent extends Agent {
     public void turn(Heading dir) {
 
     }
+
 }

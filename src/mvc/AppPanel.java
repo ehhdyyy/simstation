@@ -12,8 +12,8 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
     protected View view;
     protected JPanel controlPanel;
     private JFrame frame;
-    public static int FRAME_WIDTH = 500;
-    public static int FRAME_HEIGHT = 305;
+    public static int FRAME_WIDTH = 1000;
+    public static int FRAME_HEIGHT = 500;
     JPanel mainPanel = new JPanel(new BorderLayout());
 
     public AppPanel(AppFactory factory) {
@@ -25,6 +25,7 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
         model.subscribe(this);
 
         controlPanel = new JPanel();
+        controlPanel.setBackground(Color.PINK);
 
         frame = new SafeFrame();
         Container cp = frame.getContentPane();
@@ -32,7 +33,7 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
 
         mainPanel.add(controlPanel, BorderLayout.CENTER);
 
-        view.setPreferredSize(new Dimension(250, 250));
+        // view.setPreferredSize(new Dimension(250, 250));
         // view.setBackground(Color.blue);
         mainPanel.add(view, BorderLayout.EAST);
 

@@ -1,11 +1,25 @@
 package src.simstation;
 
 import src.mvc.*;
+import java.awt.*;
 
 public class WorldView extends View {
 
     public WorldView(Model model) {
         super(model);
+        setPreferredSize(new Dimension(500, 500));
+        setBackground(Color.GRAY);
+    }
+
+    @Override
+    public void paintComponent(Graphics gc) {
+        super.paintComponent(gc);
+
+    }
+
+    public void drawAgents(Agent a, Graphics gc) {
+        gc.setColor(Color.RED);
+
     }
 
     @Override

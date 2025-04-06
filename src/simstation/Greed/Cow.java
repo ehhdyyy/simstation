@@ -8,9 +8,9 @@ public class Cow extends MobileAgent {
     private final int greediness = 25;
 
     @Override
-    public void run() {
+    public void update() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'run'");
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 
 }

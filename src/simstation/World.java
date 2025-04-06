@@ -7,11 +7,16 @@ import java.util.*;
 import src.mvc.*;
 
 public abstract class World extends Model {
-    protected final int SIZE = 500;
-    private int clock = 0;
-    private int alive = 0;
+    public final static int SIZE = 500;
+    public int clock = 0;
+    public int alive = 0;
 
     private List<Agent> agents = new ArrayList<>();
+
+    public World() {
+        super();
+        ObserverAgent observer = new ObserverAgent(this);
+    }
 
     public Iterator<Agent> iterator() {
         return agents.iterator();
@@ -22,28 +27,32 @@ public abstract class World extends Model {
     }
 
     public void pauseAgents() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'pauseAgents'");
+        for (Agent agent : agents) {
+            agent.pause();
+        }
     }
 
     public void resumeAgents() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'resumeAgents'");
+        for (Agent agent : agents) {
+            agent.resume();
+        }
     }
 
     public void startAgents() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'startAgents'");
+        for (Agent agent : agents) {
+            agent.start();
+        }
+    }
+
+    public void stopAgents() {
+        for (Agent agent : agents) {
+            agent.stop();
+        }
     }
 
     public void getStatus() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getStatus'");
-    }
-
-    public void stopAgents() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'stopAgents'");
     }
 
     public abstract void populate();
