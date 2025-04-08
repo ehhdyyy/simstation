@@ -3,16 +3,19 @@ import src.simstation.*;
 
 public class ObserverAgent extends Agent {
 
-    World world;
-
-    public ObserverAgent(World world) {
-        super(world);
-        this.world = world;
+    public ObserverAgent(String agentName) {
+        super("Stats");
     }
 
     @Override
     public void update() {
-        updateStatistics();
+        try {
+            getWorld().updateStatistics();
+            Thread.sleep(1000); // Sleep for 1 second before updating again
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     
