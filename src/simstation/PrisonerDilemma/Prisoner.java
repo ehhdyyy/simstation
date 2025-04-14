@@ -11,12 +11,12 @@ public class Prisoner extends MobileAgent {
         super(agentName);
     }
 
-    public boolean cooperate() {
-        return false;
+    public boolean getPartnerCheated() {
+        return partnerCheated;
     }
 
-    public void updateFitness(int amt) {
-
+    public boolean cooperate() {
+        return false;
     }
 
     @Override
@@ -25,4 +25,7 @@ public class Prisoner extends MobileAgent {
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 
+    public void updateFitness(int amt) {
+
+    }
 }
