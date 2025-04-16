@@ -4,12 +4,13 @@ import src.mvc.Utilities;
 import src.simstation.MobileAgent;
 
 public class Prisoner extends MobileAgent {
-    private int fitness = 0;
+    private int fitness;
     private boolean partnerCheated = false;
     private Strategy strategy;
 
     public Prisoner(String agentName) {
         super(agentName);
+        this.fitness = 0;
     }
 
     public boolean getPartnerCheated() {
@@ -20,36 +21,32 @@ public class Prisoner extends MobileAgent {
         return strategy.cooperate(this);
     }
 
+    public void updateFitness(int amt) {
+        fitness += amt;
+    }
+
     @Override
     public void update() {
-        MobileAgent partner = (Prisoner) world.getNeighbor(this, 100);
+        Prisoner partner = (Prisoner) world.getNeighbor(this, 100);
 
         boolean cheated = this.cooperate();
-        boolean partnerCheated = partner.cooperate();
+        partnerCheated = partner.cooperate();
 
         if (partner != null) {
             if (cheated) {
                 if (partnerCheated) {
                     updateFitness(1);
-                    partner.updateFitness(1);
                 } else {
                     updateFitness(5);
                 }
             } else {
-                if (partnerCheated) {
-                    partner.updateFitness(5);
-                } else {
-                    pdateFitness(3);
-                    partner.updatefitness(3);
+                if (!partnerCheated) {
+                    updateFitness(3);
                 }
             }
         }
 
         int steps = Utilities.rng.nextInt(20) + 1;
         move(steps);
-    }
-
-    public void updateFitness(int amt) {
-        this.fitness += amt;
     }
 }
