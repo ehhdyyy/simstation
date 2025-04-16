@@ -28,7 +28,7 @@ public class WorldFactory implements AppFactory {
 
     @Override
     public Model makeModel() {
-        return new World(); // WILL NOT WORK SINCE WORLD IS ABSTRACT
+        return null; //WILL BE OVERRIDEN 
     }
 
     @Override
