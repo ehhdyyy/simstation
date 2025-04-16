@@ -6,6 +6,7 @@ import src.simstation.MobileAgent;
 public class Prisoner extends MobileAgent {
     private int fitness = 0;
     private boolean partnerCheated = false;
+    private Strategy strategy;
 
     public Prisoner(String agentName) {
         super(agentName);
@@ -16,34 +17,39 @@ public class Prisoner extends MobileAgent {
     }
 
     public boolean cooperate() {
-        return strategy.cooperate();
+        return strategy.cooperate(this);
     }
 
     @Override
     public void update() {
-        MobileAgent partner = getWorld.getNeighbor(this, 100);
+        MobileAgent partner = (Prisoner) world.getNeighbor(this, 100);
 
-        Boolean cheated = this.cooperate();
+        boolean cheated = this.cooperate();
+        boolean partnerCheated = partner.cooperate();
 
         if (partner != null) {
-            updateFitness(fitness);
             if (cheated) {
                 if (partnerCheated) {
                     updateFitness(1);
+                    partner.updateFitness(1);
                 } else {
                     updateFitness(5);
                 }
             } else {
-                if (!partnerCheated) {
-                    updateFitness(3);
+                if (partnerCheated) {
+                    partner.updateFitness(5);
+                } else {
+                    pdateFitness(3);
+                    partner.updatefitness(3);
                 }
             }
         }
 
-        move(Drunk);
+        int steps = Utilities.rng.nextInt(20) + 1;
+        move(steps);
     }
 
     public void updateFitness(int amt) {
-        fitness += amt;
+        this.fitness += amt;
     }
 }
