@@ -13,7 +13,11 @@ public class WorldFactory implements AppFactory {
     @Override
     public String[] getHelp() {
         return new String[] {
-                "" // finish this
+                "Start: Starts the simulation", 
+                "Pause: Pauses the simulation",
+                "Resume: Resumes the simulation",
+                "Stop: Stops the simulation",
+                "Stats: Displays the statistics of the simulation",
         };
     }
 

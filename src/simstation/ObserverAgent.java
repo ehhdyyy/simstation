@@ -17,7 +17,4 @@ public class ObserverAgent extends Agent {
             e.printStackTrace();
         }
     }
-
-    
-
 }

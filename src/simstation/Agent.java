@@ -5,11 +5,12 @@ import java.io.Serializable;
 import src.mvc.Utilities;
 
 public abstract class Agent implements Runnable, Serializable {
-    private int xc, yc;
-    private boolean paused = false;
-    private boolean stopped = false;
-    private String agentName;
-    private World world;
+    protected int xc, yc;
+    protected boolean paused = false;
+    protected
+     boolean stopped = false;
+    protected String agentName;
+    protected World world;
     transient protected Thread myThread;
 
     public Agent(String agentName) {
@@ -44,18 +45,21 @@ public abstract class Agent implements Runnable, Serializable {
     }
 
     public synchronized void resume() {
+        paused = false;
         this.notify();
     }
 
     public void run() {
         myThread = Thread.currentThread();
+        checkSuspended();
         while (!stopped) {
             try {
                 update();
-                Thread.sleep(250);
+                Thread.sleep(1000);
                 checkSuspended();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
+                Utilities.error(e);
             }
         }
     }
@@ -92,7 +96,7 @@ public abstract class Agent implements Runnable, Serializable {
     }
 
     public String getAgentName() {
-        return agentName;
+        return this.agentName;
     }
 
     public World getWorld() {
