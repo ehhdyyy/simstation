@@ -16,22 +16,34 @@ public class Prisoner extends MobileAgent {
     }
 
     public boolean cooperate() {
-
-        return false;
+        return strategy.cooperate();
     }
 
     @Override
     public void update() {
-        MobileAgent partner = world.getNeighbor(this, 100);
+        MobileAgent partner = getWorld.getNeighbor(this, 100);
+
+        Boolean cheated = this.cooperate();
+
         if (partner != null) {
             updateFitness(fitness);
+            if (cheated) {
+                if (partnerCheated) {
+                    updateFitness(1);
+                } else {
+                    updateFitness(5);
+                }
+            } else {
+                if (!partnerCheated) {
+                    updateFitness(3);
+                }
+            }
         }
 
         move(Drunk);
     }
 
     public void updateFitness(int amt) {
-        Boolean cheated = cooperate();
-        partnerCheated = 
+        fitness += amt;
     }
 }
