@@ -4,10 +4,9 @@ import java.util.Random;
 
 public class RandomlyCooperate implements Strategy {
     @Override
-    public boolean cooperate() {
+    public boolean cooperate(Prisoner prisoner) {
         Random random = new Random();
-        boolean rand = random.nextBoolean();
 
-        return rand;
+        return random.nextBoolean();
     }
 }

@@ -16,16 +16,22 @@ public class Prisoner extends MobileAgent {
     }
 
     public boolean cooperate() {
+
         return false;
     }
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        MobileAgent partner = world.getNeighbor(this, 100);
+        if (partner != null) {
+            updateFitness(fitness);
+        }
+
+        move(Drunk);
     }
 
     public void updateFitness(int amt) {
-
+        Boolean cheated = cooperate();
+        partnerCheated = 
     }
 }
