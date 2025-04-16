@@ -2,7 +2,6 @@ package src.simstation.Greed;
 
 import src.simstation.*;
 
-import java.util.*;
 import src.mvc.*;
 
 public class Meadow extends World {

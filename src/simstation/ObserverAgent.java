@@ -1,5 +1,4 @@
 package src.simstation;
-import src.simstation.*;
 
 public class ObserverAgent extends Agent {
 
