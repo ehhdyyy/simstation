@@ -11,17 +11,41 @@ public abstract class MobileAgent extends Agent {
 
     public void move(int steps) {
         int x = getAgentX();
+        int newX;
         int y = getAgentY();
+        int newY;
         for(int i = 0; i < steps; i++) {
             if (heading == Heading.NORTH) {
-                setAgentY(y--);
+                newY = y--;
+                if(newY <= 0){
+                    setAgentY(World.SIZE);
+                }else{
+                    setAgentY(newY);
+                }
             } else if (heading == Heading.SOUTH) {
-                setAgentY(y++);
+                newY = y++;
+                if(newY >= 500){
+                    setAgentY(0);
+                }else{
+                    setAgentY(newY);
+                }
             } else if (heading == Heading.WEST) {
-                setAgentX(x--);
+                newX = x--;
+                if(newX <= 0){
+                    setAgentX(World.SIZE);
+                }else{
+                    setAgentX(newX);
+                }
+
             } else if (heading == Heading.EAST) {
-                setAgentX(x++);
+                newX = x++;
+                if(newX >= 500){
+                    setAgentX(0);
+                }else{
+                    setAgentX(newX);
+                }
             }
+            world.changed();
         }
     }
 

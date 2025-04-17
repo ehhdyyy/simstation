@@ -32,6 +32,10 @@ public abstract class World extends Model {
         return agents;
     }
 
+    public ObserverAgent getObserver(){
+        return observer;
+    }
+
     public void pauseAgents() {
         for (Agent agent : agents) {
             agent.pause();
@@ -106,7 +110,11 @@ public abstract class World extends Model {
         }
         if (neighbors.size() == 0) {
             return null;
-        }
+        } 
         return neighbors.get(Utilities.rng.nextInt(neighbors.size()));
+    }
+
+    public int getClock(){
+        return clock;
     }
 }

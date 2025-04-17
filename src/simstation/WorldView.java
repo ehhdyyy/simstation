@@ -7,14 +7,14 @@ import javax.swing.*;
 
 public class WorldView extends View {
     World world;
-    List<Agent>agentList;
+    protected List<Agent>agentList;
 
     public WorldView(Model model) {
         super(model);
         world = (World) model;
         agentList = world.getAgents();
         setPreferredSize(new Dimension(500, 500));
-        setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         setBackground(Color.GRAY);
     }
 
