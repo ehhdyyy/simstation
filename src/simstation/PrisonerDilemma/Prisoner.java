@@ -35,13 +35,18 @@ public class Prisoner extends MobileAgent {
         if (partner != null) {
             if (cheated) {
                 if (partnerCheated) {
-                    updateFitness(1);
+                    this.updateFitness(1);
+                    partner.updateFitness(1);
                 } else {
-                    updateFitness(5);
+                    this.updateFitness(5);
                 }
             } else {
-                if (!partnerCheated) {
-                    updateFitness(3);
+                if (partnerCheated) {
+                    partner.updateFitness(5);
+                }
+                else{
+                    partner.updateFitness(3);
+                    this.updateFitness(3);
                 }
             }
         }
