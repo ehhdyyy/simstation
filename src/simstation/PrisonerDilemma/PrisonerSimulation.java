@@ -13,7 +13,7 @@ public class PrisonerSimulation extends World {
     @Override
     public void populate() {
         for (int i = 0; i < cheatersNum; i++) {
-            addAgent(new Prisoner("Cheaters", new Cheat()));
+            addAgent(new Prisoner("Cheater", new Cheat()));
         }
         for (int i = 0; i < cooperatorsNum; i++) {
             addAgent(new Prisoner("Cooperator", new Cooperate()));
