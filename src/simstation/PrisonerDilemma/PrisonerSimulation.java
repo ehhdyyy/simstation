@@ -26,6 +26,31 @@ public class PrisonerSimulation extends World {
         }
     }
 
+    public double avgScore(String name) {
+        double total = 0;
+        int count = 0;
+        for (Agent agent : getAgents()) {
+            total += ((Prisoner) agent).getFitness();
+            count++;
+        }
+        return total / count;
+    }
+
+    @Override
+    public void getStatus() {
+        Utilities.inform(new String[] {
+                "Average Scores:",
+                "Cheaters: " + avgScore("Cheater"),
+                "Cooperators: " + avgScore("Cooperator"),
+                "Tit4Tat: " + avgScore("Tit4Tat"),
+                "RandomlyCooperator: " + avgScore("RandomlyCooperator")
+        });
+    }
+
+    public static void main(String[] args) {
+        AppPanel app = new WorldPanel(new PrisonerSimFactory());
+        app.display();
+    }
 }
 
 class PrisonerSimFactory extends WorldFactory {
