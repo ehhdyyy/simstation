@@ -45,7 +45,9 @@ public class PlagueSimulation extends World{
 
     public void toggleFatal() {
             FATAL = !getFatal();
-            System.out.println("toggled: " + getFatal());
+            Utilities.inform(new String[]{
+                "Fatal: " + getFatal(),
+            });
     }
 
     @Override
@@ -98,11 +100,10 @@ class PlagueFactory extends WorldFactory{
 
     @Override
     public Command makeEditCommand(Model model, String type, Object source){
-        Command command = super.makeEditCommand(model, type, source);
-        if(type.equalsIgnoreCase("Not fatal")){
+        if(type.equalsIgnoreCase("Toggle FATAL")){
             return new FatalCommand(model);
         }
-        return command;
+        return super.makeEditCommand(model, type, source);
     }
 }
 
@@ -144,7 +145,7 @@ class PlaguePanel extends WorldPanel implements ChangeListener{
         infectionLengthSlider.setPaintLabels(true);
         infectionLengthSlider.setLabelTable(infectionLengthSlider.createStandardLabels(50));
 
-        fatalButton = new JButton("Not fatal");
+        fatalButton = new JButton("Toggle FATAL");
 
         initialInfectedSlider.addChangeListener(this);
         infectionProbabilitySlider.addChangeListener(this);
