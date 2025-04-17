@@ -28,7 +28,7 @@ public abstract class World extends Model {
         agents.add(a);
     }
 
-    public List<Agent> getAgents(){
+    public List<Agent> getAgents() {
         return agents;
     }
 
@@ -73,10 +73,10 @@ public abstract class World extends Model {
     }
 
     public void getStatus() {
-        Utilities.inform(new String[]{
-            "#agents: " + agents.size(),
-            "#living: " + alive,
-            "clock: " + clock,
+        Utilities.inform(new String[] {
+                "#agents: " + agents.size(),
+                "#living: " + alive,
+                "clock: " + clock,
         });
     }
 

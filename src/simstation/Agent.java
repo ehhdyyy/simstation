@@ -9,7 +9,7 @@ public abstract class Agent implements Runnable, Serializable {
     private boolean paused = false;
     private boolean stopped = false;
     private String agentName;
-    private World world;
+    protected World world;
     transient protected Thread myThread;
 
     public Agent(String agentName) {
@@ -31,7 +31,7 @@ public abstract class Agent implements Runnable, Serializable {
         stopped = true;
     }
 
-    public synchronized boolean isStopped(){
+    public synchronized boolean isStopped() {
         return stopped;
     }
 
@@ -39,7 +39,7 @@ public abstract class Agent implements Runnable, Serializable {
         paused = true;
     }
 
-    public synchronized boolean isPaused(){
+    public synchronized boolean isPaused() {
         return paused;
     }
 
@@ -60,34 +60,32 @@ public abstract class Agent implements Runnable, Serializable {
         }
     }
 
-    public synchronized void checkSuspended(){
-        try{
-            while(!stopped && paused){
+    public synchronized void checkSuspended() {
+        try {
+            while (!stopped && paused) {
                 wait();
                 paused = false;
             }
-        }catch(InterruptedException e){
+        } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
     }
 
-    
     public abstract void update();
-    
+
     public int getAgentX() {
         return xc;
     }
 
-    public void setAgentX(int x){
+    public void setAgentX(int x) {
         xc = x;
     }
-
 
     public int getAgentY() {
         return yc;
     }
 
-    public void setAgentY(int y){
+    public void setAgentY(int y) {
         yc = y;
     }
 
