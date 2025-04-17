@@ -1,6 +1,7 @@
 package src.simstation.PrisonerDilemma;
 
 import src.mvc.Utilities;
+import src.simstation.Heading;
 import src.simstation.MobileAgent;
 
 public class Prisoner extends MobileAgent {
@@ -29,11 +30,11 @@ public class Prisoner extends MobileAgent {
     public void update() {
         Prisoner partner = (Prisoner) world.getNeighbor(this, 100);
 
-        boolean cheated = this.cooperate();
-        partnerCheated = partner.cooperate();
+        boolean cooperate = this.cooperate();
+        partnerCheated = !partner.cooperate();
 
         if (partner != null) {
-            if (cheated) {
+            if (cooperate) {
                 if (partnerCheated) {
                     this.updateFitness(1);
                     partner.updateFitness(1);
@@ -43,14 +44,14 @@ public class Prisoner extends MobileAgent {
             } else {
                 if (partnerCheated) {
                     partner.updateFitness(5);
-                }
-                else{
+                } else {
                     partner.updateFitness(3);
                     this.updateFitness(3);
                 }
             }
         }
 
+        heading = Heading.random();
         int steps = Utilities.rng.nextInt(20) + 1;
         move(steps);
     }
