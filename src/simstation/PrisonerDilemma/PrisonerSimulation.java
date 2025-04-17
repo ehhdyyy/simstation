@@ -30,8 +30,10 @@ public class PrisonerSimulation extends World {
         double total = 0;
         int count = 0;
         for (Agent agent : getAgents()) {
-            total += ((Prisoner) agent).getFitness();
-            count++;
+            if (agent.getAgentName().equals(name)) {
+                total += ((Prisoner) agent).getFitness();
+                count++;
+            }
         }
         return total / count;
     }
