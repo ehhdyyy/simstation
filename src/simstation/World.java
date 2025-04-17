@@ -93,9 +93,20 @@ public abstract class World extends Model {
         alive = agents.size() - dead;
     }
 
-    public Agent getNeighbors(Agent caller, int radius) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getNeighbors'");
+    public Agent getNeighbor(Agent caller, int radius) {
+        List<Agent> neighbors = new ArrayList<Agent>();
+        for (Agent agent : agents) {
+            if (agent != caller) {
+                int x = Math.abs(agent.getAgentX() - caller.getAgentX());
+                int y = Math.abs(agent.getAgentY() - caller.getAgentY());
+                if (x < radius && y < radius) {
+                    neighbors.add(agent);
+                }
+            }
+        }
+        if (neighbors.size() == 0) {
+            return null;
+        }
+        return neighbors.get(Utilities.rng.nextInt(neighbors.size()));
     }
-
 }

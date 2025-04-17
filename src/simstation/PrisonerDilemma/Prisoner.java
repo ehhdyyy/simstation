@@ -8,9 +8,12 @@ public class Prisoner extends MobileAgent {
     private int fitness;
     private boolean partnerCheated = false;
     private Strategy strategy;
+    private String name;
 
-    public Prisoner(String agentName) {
+    public Prisoner(String agentName, Strategy strategy) {
         super(agentName);
+        this.name = agentName;
+        this.strategy = strategy;
         this.fitness = 0;
     }
 
@@ -27,7 +30,7 @@ public class Prisoner extends MobileAgent {
     }
 
     public void updateFitness(int amt) {
-        fitness += amt;
+        fitness += amt; 
     }
 
     public int getFitness(){
