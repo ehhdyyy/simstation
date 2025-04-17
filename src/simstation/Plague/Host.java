@@ -45,7 +45,7 @@ public class Host extends MobileAgent{
     @Override
     public void update() {
 
-        Host victim = (Host)world.getNeighbor(this, 50);
+        Host victim = (Host)world.getNeighbor(this, 30);
         if(victim != null){
            victim.infect();
             int time = world.getClock() - timeInfected;
